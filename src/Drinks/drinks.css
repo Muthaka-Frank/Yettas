@@ -1,0 +1,141 @@
+/* --- YETTAS PASTRIES GLOBAL STYLES (Consistency with Brand) --- */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* User-friendly font */
+    margin: 0;
+    padding: 0 20px 40px;
+    color: #333; /* Dark text for readability */
+}
+
+/* Page Header Styling */
+.page-header {
+    text-align: center;
+    padding: 40px 0;
+    margin-bottom: 20px;
+}
+
+.page-header h1 {
+    font-size: 2.5em;
+    color: #d17a47; /* Your main brand color */
+    margin-bottom: 5px;
+}
+
+.page-header p {
+    font-size: 1.1em;
+    color: #6b6b6b;
+}
+
+/* --- DRINKS GRID LAYOUT --- */
+
+.drinks-container {
+  display: flex;
+  flex-wrap: wrap; /* Allows cakes to wrap on smaller screens */
+  justify-content: center;
+  gap: 25px; /* Space between the cake cards */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- DRINK CARD STYLING --- */
+
+.drink-card {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  padding: 20px;
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+  border-bottom: 5px solid; /* Placeholder for color-coded border */
+}
+
+.drink-card:hover {
+    transform: translateY(-5px); /* Lift card on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.drink-card h2 {
+    color: #d17a47; /* Drink title in brand color */
+    font-size: 1.6em;
+    margin-top: 0;
+}
+
+.price {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #4a4a4a;
+    margin: 10px 0;
+}
+
+.description {
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+/* --- ADD TO CART BUTTON STYLES (Reusing previous style for consistency) --- */
+
+.add-to-cart-btn {
+    /* Color and Background */
+    background-color: #d17a47; 
+    color: #ffffff;             
+    border: none; /* Removed the visible border for a slightly cleaner look */
+
+    /* Typography and Size */
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    
+    /* Shape and Spacing */
+    border-radius: 6px; 
+    cursor: pointer;    
+    transition: background-color 0.2s ease, transform 0.1s ease; 
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: block; /* Make button fill the width of the card */
+    width: 100%;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #b3643b; /* Slightly darker shade on hover */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.add-to-cart-btn:active {
+    background-color: #8f4d2c; 
+    transform: translateY(1px); 
+    box-shadow: none;           
+}
+
+/* ... (Existing CSS code remains the same) ... */
+
+/* --- DRINK CARD STYLING --- */
+
+.drink-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+/* NEW IMAGE STYLES */
+.drink-img {
+/* This 10px padding is the new code */
+  padding: 10px; 
+
+  width: 100%;
+  height: 200px;
+  object-fit: cover; 
+  /* To ensure the image and padding don't enlarge the card size: */
+  box-sizing: border-box; 
+  
+  border-radius: 10px;
+  margin-bottom: 5px; /* Reduced margin to account for padding */
+}
+
+/* ... (Rest of the CSS code remains the same: h2, price, description, button styles) ... */

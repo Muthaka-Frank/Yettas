@@ -1,0 +1,297 @@
+warning: unused manifest key: package.argon2
+warning: unused manifest key: package.chrono
+warning: unused manifest key: package.jsonwebtoken
+warning: unused manifest key: package.rand_core
+    Checking yetta_backend v0.1.0 (C:\Users\frank\OneDrive\Documents\MyProjects\Yetta\Backend)
+error[E0432]: unresolved import `actix_cors`
+ --> src\main.rs:2:5
+  |
+2 | use actix_cors::Cors;
+  |     ^^^^^^^^^^ use of unresolved module or unlinked crate `actix_cors`
+  |
+  = help: if you wanted to use a crate named `actix_cors`, use `cargo add actix_cors` to add it to your `Cargo.toml`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `actix_web`
+ --> src\main.rs:3:5
+  |
+3 | use actix_web::{web, App, HttpServer, middleware::Logger};
+  |     ^^^^^^^^^ use of unresolved module or unlinked crate `actix_web`
+  |
+  = help: if you wanted to use a crate named `actix_web`, use `cargo add actix_web` to add it to your `Cargo.toml`
+
+error[E0432]: unresolved import `actix_web`
+ --> src\main.rs:3:5
+  |
+3 | use actix_web::{web, App, HttpServer, middleware::Logger};
+  |     ^^^^^^^^^ use of unresolved module or unlinked crate `actix_web`
+  |
+  = help: if you wanted to use a crate named `actix_web`, use `cargo add actix_web` to add it to your `Cargo.toml`
+
+error[E0432]: unresolved import `dotenv`
+ --> src\main.rs:5:5
+  |
+5 | use dotenv::dotenv;
+  |     ^^^^^^ use of unresolved module or unlinked crate `dotenv`
+  |
+  = help: if you wanted to use a crate named `dotenv`, use `cargo add dotenv` to add it to your `Cargo.toml`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `mongodb`
+ --> src\db.rs:2:5
+  |
+2 | use mongodb::{Client, options::ClientOptions};
+  |     ^^^^^^^ use of unresolved module or unlinked crate `mongodb`
+  |
+  = help: if you wanted to use a crate named `mongodb`, use `cargo add mongodb` to add it to your `Cargo.toml`
+
+error[E0432]: unresolved import `mongodb`
+ --> src\db.rs:2:5
+  |
+2 | use mongodb::{Client, options::ClientOptions};
+  |     ^^^^^^^ use of unresolved module or unlinked crate `mongodb`
+  |
+  = help: if you wanted to use a crate named `mongodb`, use `cargo add mongodb` to add it to your `Cargo.toml`
+
+error[E0432]: unresolved import `actix_web`
+ --> src\handlers\auth.rs:1:5
+  |
+1 | use actix_web::{web, HttpResponse, Responder};
+  |     ^^^^^^^^^ use of unresolved module or unlinked crate `actix_web`
+  |
+  = help: if you wanted to use a crate named `actix_web`, use `cargo add actix_web` to add it to your `Cargo.toml`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `mongodb`
+ --> src\handlers\auth.rs:2:5
+  |
+2 | use mongodb::{Client, Collection, bson::{doc, oid::ObjectId}};
+  |     ^^^^^^^ use of unresolved module or unlinked crate `mongodb`
+  |
+  = help: if you wanted to use a crate named `mongodb`, use `cargo add mongodb` to add it to your `Cargo.toml`
+
+error[E0432]: unresolved import `mongodb`
+ --> src\handlers\auth.rs:2:5
+  |
+2 | use mongodb::{Client, Collection, bson::{doc, oid::ObjectId}};
+  |     ^^^^^^^ use of unresolved module or unlinked crate `mongodb`
+  |
+  = help: if you wanted to use a crate named `mongodb`, use `cargo add mongodb` to add it to your `Cargo.toml`
+
+error[E0432]: unresolved import `serde`
+ --> src\handlers\auth.rs:3:5
+  |
+3 | use serde::{Deserialize, Serialize};
+  |     ^^^^^ use of unresolved module or unlinked crate `serde`
+  |
+  = help: if you wanted to use a crate named `serde`, use `cargo add serde` to add it to your `Cargo.toml`
+
+error[E0432]: unresolved import `log`
+ --> src\handlers\auth.rs:4:5
+  |
+4 | use log;
+  |     ^^^ no external crate `log`
+
+error[E0432]: unresolved import `reqwest`
+ --> src\handlers\auth.rs:5:5
+  |
+5 | use reqwest; // Added for Google token verification
+  |     ^^^^^^^ no external crate `reqwest`
+
+error[E0432]: unresolved import `actix_web`
+ --> src\handlers\cart.rs:1:5
+  |
+1 | use actix_web::{web, HttpResponse, Responder};
+  |     ^^^^^^^^^ use of unresolved module or unlinked crate `actix_web`
+  |
+  = help: if you wanted to use a crate named `actix_web`, use `cargo add actix_web` to add it to your `Cargo.toml`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `mongodb`
+ --> src\handlers\cart.rs:2:5
+  |
+2 | use mongodb::{Client, Collection, bson::{doc, oid::ObjectId}};
+  |     ^^^^^^^ use of unresolved module or unlinked crate `mongodb`
+  |
+  = help: if you wanted to use a crate named `mongodb`, use `cargo add mongodb` to add it to your `Cargo.toml`
+
+error[E0432]: unresolved import `mongodb`
+ --> src\handlers\cart.rs:2:5
+  |
+2 | use mongodb::{Client, Collection, bson::{doc, oid::ObjectId}};
+  |     ^^^^^^^ use of unresolved module or unlinked crate `mongodb`
+  |
+  = help: if you wanted to use a crate named `mongodb`, use `cargo add mongodb` to add it to your `Cargo.toml`
+
+error[E0432]: unresolved import `serde`
+ --> src\handlers\cart.rs:3:5
+  |
+3 | use serde::{Deserialize, Serialize};
+  |     ^^^^^ use of unresolved module or unlinked crate `serde`
+  |
+  = help: if you wanted to use a crate named `serde`, use `cargo add serde` to add it to your `Cargo.toml`
+
+error[E0432]: unresolved import `serde_json`
+ --> src\handlers\cart.rs:4:5
+  |
+4 | use serde_json::json; // <-- ADDED: For correct JSON responses
+  |     ^^^^^^^^^^ use of unresolved module or unlinked crate `serde_json`
+  |
+  = help: if you wanted to use a crate named `serde_json`, use `cargo add serde_json` to add it to your `Cargo.toml`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `mongodb`
+ --> src\models\user.rs:2:5
+  |
+2 | use mongodb::bson::oid::ObjectId;
+  |     ^^^^^^^ use of unresolved module or unlinked crate `mongodb`
+  |
+  = help: if you wanted to use a crate named `mongodb`, use `cargo add mongodb` to add it to your `Cargo.toml`
+
+error[E0432]: unresolved import `serde`
+ --> src\models\user.rs:1:5
+  |
+1 | use serde::{Serialize, Deserialize};
+  |     ^^^^^ use of unresolved module or unlinked crate `serde`
+  |
+  = help: if you wanted to use a crate named `serde`, use `cargo add serde` to add it to your `Cargo.toml`
+
+error[E0432]: unresolved import `jsonwebtoken`
+ --> src\utils\jwt.rs:2:5
+  |
+2 | use jsonwebtoken::{encode, Header, Algorithm, EncodingKey};
+  |     ^^^^^^^^^^^^ use of unresolved module or unlinked crate `jsonwebtoken`
+  |
+  = help: if you wanted to use a crate named `jsonwebtoken`, use `cargo add jsonwebtoken` to add it to your `Cargo.toml`
+
+error[E0432]: unresolved import `chrono`
+ --> src\utils\jwt.rs:3:5
+  |
+3 | use chrono::{Utc, Duration};
+  |     ^^^^^^ use of unresolved module or unlinked crate `chrono`
+  |
+  = help: if you wanted to use a crate named `chrono`, use `cargo add chrono` to add it to your `Cargo.toml`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `argon2`
+ --> src\utils\password.rs:2:5
+  |
+2 | use argon2::{
+  |     ^^^^^^ use of unresolved module or unlinked crate `argon2`
+  |
+  = help: if you wanted to use a crate named `argon2`, use `cargo add argon2` to add it to your `Cargo.toml`
+
+error[E0432]: unresolved import `serde`
+ --> src\utils\jwt.rs:4:5
+  |
+4 | use serde::{Serialize, Deserialize};
+  |     ^^^^^ use of unresolved module or unlinked crate `serde`
+  |
+  = help: if you wanted to use a crate named `serde`, use `cargo add serde` to add it to your `Cargo.toml`
+
+error[E0432]: unresolved import `argon2`
+ --> src\utils\password.rs:2:5
+  |
+2 | use argon2::{
+  |     ^^^^^^ use of unresolved module or unlinked crate `argon2`
+  |
+  = help: if you wanted to use a crate named `argon2`, use `cargo add argon2` to add it to your `Cargo.toml`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `actix_web`
+  --> src\main.rs:16:3
+   |
+16 | #[actix_web::main]
+   |   ^^^^^^^^^ use of unresolved module or unlinked crate `actix_web`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `log`
+  --> src\main.rs:29:5
+   |
+29 |     log::info!("Successfully connected to MongoDB");
+   |     ^^^ use of unresolved module or unlinked crate `log`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `log`
+  --> src\main.rs:31:5
+   |
+31 |     log::info!("Starting server at http://{}", server_addr);
+   |     ^^^ use of unresolved module or unlinked crate `log`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `log`
+  --> src\handlers\cart.rs:91:13
+   |
+91 |             log::info!("Processing bank transfer for account {}", account);
+   |             ^^^ use of unresolved module or unlinked crate `log`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `log`
+  --> src\handlers\cart.rs:82:13
+   |
+82 |             log::info!("Initiating M-Pesa STK Push to {}", phone);
+   |             ^^^ use of unresolved module or unlinked crate `log`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `log`
+  --> src\handlers\cart.rs:73:5
+   |
+73 |     log::info!("Processing checkout for user {} with method {}", user_id_str, req.payment_method);
+   |     ^^^ use of unresolved module or unlinked crate `log`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `log`
+  --> src\handlers\cart.rs:50:5
+   |
+50 |     log::info!("Adding item {} for user {}", item.item_id, user_id_str);
+   |     ^^^ use of unresolved module or unlinked crate `log`
+
+error: cannot find attribute `serde` in this scope
+ --> src\models\user.rs:6:7
+  |
+6 |     #[serde(rename = "_id", skip_serializing_if = "Option::is_none")]
+  |       ^^^^^
+
+error: cannot find attribute `serde` in this scope
+  --> src\models\user.rs:11:7
+   |
+11 |     #[serde(skip_serializing)] // Never send the password hash to the client (Good!)
+   |       ^^^^^
+
+error: cannot find attribute `serde` in this scope
+  --> src\models\user.rs:14:7
+   |
+14 |     #[serde(skip_serializing_if = "Option::is_none")]
+   |       ^^^^^
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `jsonwebtoken`
+  --> src\utils\jwt.rs:20:64
+   |
+20 | pub fn create_token(email: &str, name: &str) -> Result<String, jsonwebtoken::errors::Error> {
+   |                                                                ^^^^^^^^^^^^ use of unresolved module or unlinked crate `jsonwebtoken`
+   |
+   = help: if you wanted to use a crate named `jsonwebtoken`, use `cargo add jsonwebtoken` to add it to your `Cargo.toml`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `env_logger`
+  --> src\main.rs:22:31
+   |
+22 |     env_logger::init_from_env(env_logger::Env::new().default_filter_or("info"));
+   |                               ^^^^^^^^^^ use of unresolved module or unlinked crate `env_logger`
+   |
+   = help: if you wanted to use a crate named `env_logger`, use `cargo add env_logger` to add it to your `Cargo.toml`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `mongodb`
+ --> src\db.rs:5:42
+  |
+5 | pub async fn init_db() -> Result<Client, mongodb::error::Error> {
+  |                                          ^^^^^^^ use of unresolved module or unlinked crate `mongodb`
+  |
+  = help: if you wanted to use a crate named `mongodb`, use `cargo add mongodb` to add it to your `Cargo.toml`
+help: consider importing this module
+  |
+2 + use std::error;
+  |
+help: if you import `error`, refer to it directly
+  |
+5 - pub async fn init_db() -> Result<Client, mongodb::error::Error> {
+5 + pub async fn init_db() -> Result<Client, error::Error> {
+  |
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `env_logger`
+  --> src\main.rs:22:5
+   |
+22 |     env_logger::init_from_env(env_logger::Env::new().default_filter_or("info"));
+   |     ^^^^^^^^^^ use of unresolved module or unlinked crate `env_logger`
+   |
+   = help: if you wanted to use a crate named `env_logger`, use `cargo add env_logger` to add it to your `Cargo.toml`
+
+Some errors have detailed explanations: E0432, E0433.
+For more information about an error, try `rustc --explain E0432`.
+error: could not compile `yetta_backend` (bin "yetta_backend") due to 38 previous errors

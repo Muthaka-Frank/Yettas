@@ -1,0 +1,120 @@
+/* --- Global Styles & Body Background --- */
+body {
+    font-family: 'Arial', sans-serif;
+    /* Light, warm background color */
+    background-color: #f7f3e8; 
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* --- Main Container & Header --- */
+.container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px; /* Limit the width of the form area */
+    text-align: center;
+}
+
+h1 {
+    color: #8b4513; /* Warm, chocolate-like color for the main title */
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+h2 {
+    color: #a0522d; /* Slightly lighter brown for subheadings */
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* --- Divider Line --- */
+hr {
+    border: none;
+    height: 1px;
+    background-color: #ddd;
+    margin: 30px 0;
+}
+
+/* --- Form Styles (Inputs & Buttons) --- */
+.auth-form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box; /* Include padding/border in the element's total width */
+    font-size: 1em;
+}
+
+.auth-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ffb6c1; /* Light Pink - Yetta's Pastries accent color */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.auth-form button:hover {
+    background-color: #ff99aa; /* Slightly darker pink on hover */
+}
+
+/* --- Link Styles (Switching between Login/Signup) --- */
+.auth-form p {
+    margin-top: 20px;
+    font-size: 0.95em;
+}
+
+.auth-form a {
+    color: #8b4513; /* Brown color for links */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.auth-form a:hover {
+    color: #a0522d;
+    text-decoration: underline;
+}
+
+/* --- Google Sign-In Button Area --- */
+/* The Google button is rendered by their script, but we can style its container */
+#g_id_signin {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+/* --- Message Area --- */
+#message-area {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 4px;
+    /* The color is set by the JS based on if it's an error or success */
+    font-weight: bold;
+}
+
+/* --- Responsiveness (Optional but recommended) --- */
+@media (max-width: 480px) {
+    .container {
+        margin: 20px;
+        padding: 30px 20px;
+        box-shadow: none; /* Reduce complexity on small screens */
+    }
+    h1 {
+        font-size: 1.5em;
+    }
+}

@@ -1,0 +1,239 @@
+/* --- 1. Global Variables & Color Definitions (Fixed Light Theme) --- */
+
+:root {
+    /* Fixed Theme Colors */
+    --color-text-primary: #A0522D;       /* Sienna: Text/Headings/Primary CTA */
+    --color-text-secondary: #8B4513;     /* Saddle Brown: Darker Text (Body text) */
+    --color-background: #FFF8E1;    /* Creamy, overall page background */
+    --color-surface: white;         /* Card/Section background */
+    --color-header: #D2B48C;          /* Light Tan for header/nav */
+    --color-accent: #DAA520;         /* Goldenrod: Accent/Buttons */
+    --color-border: #D2B48C;         /* Light border color */
+    --color-shadow: rgba(0, 0, 0, 0.15); /* Light shadow */
+
+    /* Typography and Timing */
+    --font-serif: 'Georgia', serif;
+    --font-sans: 'Arial', sans-serif;
+    --transition-speed: 0.3s;
+    --animation-duration: 0.8s; 
+    --animation-delay-base: 0.1s; 
+}
+
+/* --- 2. Universal Reset and Base Styles --- */
+
+*, *::before, *::after {
+    box-sizing: border-box; 
+}
+
+body {
+    font-family: var(--font-serif);
+    margin: 0;
+    padding: 0;
+    /* Uses fixed Light Theme variables */
+    background-color: var(--color-background); 
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+#root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Headings */
+h1, h2, h3 {
+    font-family: var(--font-sans);
+    color: var(--color-text-primary); 
+    text-align: center;
+    transition: color var(--transition-speed);
+}
+
+h2 {
+    font-size: 1.8rem;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+    border-bottom: 2px dashed var(--color-border); 
+}
+
+/* Links */
+a {
+    text-decoration: none;
+    cursor: pointer;
+    color: var(--color-text-primary); 
+    transition: color var(--transition-speed);
+}
+
+a:hover {
+    color: var(--color-accent);
+}
+
+/* Buttons */
+button {
+    font-family: var(--font-sans);
+    cursor: pointer;
+    border: none;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+
+/* --- 3. Layout and Structural Styles --- */
+
+/* Header */
+header {
+    background-color: var(--color-header); 
+    box-shadow: 0 4px 12px var(--color-shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: background-color var(--transition-speed);
+}
+
+.header-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Utility Class for Layout */
+main, .header-container, .footer-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+main {
+    flex-grow: 1;
+}
+
+/* Welcome Section */
+#welcome {
+    background-color: var(--color-surface);
+    box-shadow: 0 4px 8px var(--color-shadow);
+    border-radius: 12px;
+    transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+    padding: 30px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+/* Menu Grid */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 30px;
+    margin-top: 20px;
+}
+
+/* Footer */
+.footer-container {
+    background-color: var(--color-text-secondary); 
+    color: var(--color-background); 
+    padding: 30px 20px;
+    margin-top: 50px;
+    font-size: 0.9rem;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-links a {
+    color: var(--color-background); 
+}
+.footer-links a:hover {
+    color: var(--color-accent);
+}
+
+
+/* --- 4. Animation Keyframes and Base Classes --- */
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animated-element {
+    opacity: 0; 
+    animation-fill-mode: forwards; 
+}
+
+.fade-in {
+    animation-name: fadeIn;
+    animation-duration: var(--animation-duration);
+}
+
+.slide-in-up {
+    animation-name: slideInUp;
+    animation-duration: var(--animation-duration);
+}
+
+.fade-in-scale {
+    animation-name: fadeInScale;
+    animation-duration: var(--animation-duration);
+}
+
+/* --- 5. Accessibility & Responsiveness --- */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+@media (max-width: 768px) {
+    .header-container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .navigation, .search-container, .login {
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .navigation ul {
+        justify-content: space-around;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+}

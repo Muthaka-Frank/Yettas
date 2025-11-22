@@ -1,0 +1,82 @@
+/* dark-mode.css */
+
+/* --- Base Body & Background Overrides --- */
+body {
+    /* Dark background */
+    background-color: #1e1e1e !important; 
+    /* Light text */
+    color: #f0f0f0 !important; 
+}
+
+.dark-mode {
+    /* Darker container background */
+    background-color: #2c2c2c !important; 
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* --- Typography & Headers --- */
+h1 {
+    /* Lighter, high-contrast title color */
+    color: #ffb6c1 !important; 
+}
+
+h2 {
+    /* White or light gray for subheadings */
+    color: #ccc !important; 
+    border-bottom: 2px solid #444 !important;
+}
+
+hr {
+    background-color: #444 !important;
+}
+
+/* --- Form Elements --- */
+.auth-form input {
+    /* Darker input background */
+    background-color: #3a3a3a !important; 
+    /* Light text for input */
+    color: #f0f0f0 !important; 
+    border: 1px solid #555 !important;
+}
+
+/* Placeholder text color in dark mode */
+.auth-form input::placeholder {
+    color: #aaa;
+}
+
+/* --- Links & Toggle Button --- */
+.auth-form a {
+    /* High-contrast link color */
+    color: #ff99aa !important; 
+}
+
+.auth-form a:hover {
+    color: #ffb6c1 !important;
+}
+
+/* Style for the new mode toggle button */
+.mode-toggle-btn {
+    background-color: #555;
+    color: #f0f0f0;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.mode-toggle-btn:hover {
+    background-color: #777;
+}
+
+/* --- Message Area --- */
+#message-area {
+    /* Adjust message area text for better visibility on dark background */
+    color: #ff6666 !important; /* Red error message */
+}
+
+/* If you have success messages (green), you should define a light green color for dark mode */
+#message-area[style*="green"] {
+    color: #90ee90 !important; 
+}

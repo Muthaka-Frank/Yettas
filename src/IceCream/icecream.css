@@ -1,0 +1,116 @@
+/* --- icecream Grid Layout --- */
+.icecream-container {
+  display: flex;
+  flex-wrap: wrap; /* Allows icecreams to wrap on smaller screens */
+  justify-content: center;
+  gap: 25px; /* Space between the icecream cards */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+/* --- Individual icecream Card Styling --- */
+.icecream-card {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  padding: 20px;
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+  border-bottom: 5px solid; /* Placeholder for color-coded border */
+}
+/* --- Interactive Hover Effect (CSS Magic!) --- */
+.icecream-card img {
+/* This 10px padding is the new code */
+  padding: 10px; 
+  
+  width: 100%;
+  height: 200px;
+  object-fit: cover; 
+  /* To ensure the image and padding don't enlarge the card size: */
+  box-sizing: border-box; 
+  
+  border-radius: 10px;
+  margin-bottom: 5px; /* Reduced margin to account for padding */
+}
+.icecream-card:hover {
+  transform: translateY(-10px) scale(1.02); /* Lifts and slightly enlarges the card */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+.icecream-card h2 {
+  margin-top: 0;
+  font-size: 1.8em;
+  text-transform: capitalize;
+  color: #444;
+}
+.icecream-card p {
+  font-size: 0.95em;
+  color: #666;
+  min-height: 40px;
+}
+
+/* --- Flavor-Specific Styling (Colors) --- */
+
+/* Chocolate */
+.chocolate { border-color: #5d4037; } /* Deep brown */
+.chocolate:hover h2 { color: #5d4037; }
+
+/* Mango */
+.mango { border-color: #ecbc2b; } /* Soft yellow */
+.mango:hover h2 { color: #ecbc2b; }
+
+/* Orange */
+.orange { border-color: orange; } /* Classic red */
+.orange:hover h2 { color: orange; }
+
+/* Lemon */
+.lemon { border-color: #ffeb3b; } /* Bright yellow */
+.lemon:hover h2 { color: #ffeb3b; }
+
+/* Coconut */
+.coconut { border-color: #b0bec5; } /* Pale gray/white */
+.coconut:hover h2 { color: #b0bec5; }
+
+/* Passion */
+.passion { border-color: #cfcf0f; } /* Tropical blue/teal */
+.passion:hover h2 { color: #cfcf0f; }
+
+/* Pineapple */
+.pineapple { border-color: #eaf425; } /* Tropical blue/teal */
+.pineapple:hover h2 { color: #eaf425; }
+
+/* Strawberry */
+.strawberry { border-color: rgb(255, 63, 63); } /* Tropical blue/teal */
+.strawberry:hover h2 { color: rgb(255, 63, 63); }
+.add-to-cart-btn {
+    /* Color and Background */
+    background-color: #d17a47; 
+    color: #ffffff;             
+    border: none; /* Removed the visible border for a slightly cleaner look */
+
+    /* Typography and Size */
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    
+    /* Shape and Spacing */
+    border-radius: 6px; 
+    cursor: pointer;    
+    transition: background-color 0.2s ease, transform 0.1s ease; 
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: block; /* Make button fill the width of the card */
+    width: 100%;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #b3643b; /* Slightly darker shade on hover */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.add-to-cart-btn:active {
+    background-color: #8f4d2c; 
+    transform: translateY(1px); 
+    box-shadow: none;           
+}

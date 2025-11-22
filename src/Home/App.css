@@ -1,0 +1,1052 @@
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+.logo {
+    /* We can remove explicit width/height here if image itself controls it, or set a max */
+    flex-shrink: 0;
+    /* Prevent the logo from shrinking */
+    padding: 5px;
+    /* Add some padding around the logo if desired */
+    /* background-color: var(--color-surface); /* Optional: if you want a background behind the logo */
+    /* border-radius: 8px; /* Optional: if you want rounded corners */
+}
+
+
+@keyframes logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    a:nth-of-type(2) .logo {
+        animation: logo-spin infinite 20s linear;
+    }
+}
+
+.card {
+    padding: 2em;
+}
+
+.read-the-docs {
+    color: #888;
+}
+
+/* --- Root Variables & General Reset --- */
+:root {
+    --primary-color: #d17a47;
+    /* Sienna: A warm, rich brown (Yetta's Brand Color) */
+    --secondary-color: #8B4513;
+    /* Saddle Brown: Darker accent/text */
+    --background-cream: #f7f7f7;
+    /* Creamy, vanilla background */
+    --header-tan: #D2B48C;
+    /* Light Tan for header/nav */
+    --gold-accent: #DAA520;
+    /* Goldenrod: Elegant accents */
+    --font-serif: 'Georgia', serif;
+    --font-sans: 'Arial', sans-serif;
+    --shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --transition-speed: 0.3s;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-serif);
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-cream);
+    color: var(--secondary-color);
+    line-height: 1.6;
+}
+
+/* --- Accessibility & Typography --- */
+
+header {
+    background-color: #fbe9e3;
+    padding: 10px 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    /* Stronger shadow for depth */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    /* Ensure header stays on top */
+}
+
+.header-container {
+    display: flex;
+    /* Use Flexbox for alignment */
+    align-items: center;
+    /* Vertically align items in the middle */
+    justify-content: space-between;
+    /* Distribute items with space between them */
+    max-width: 98%;
+    /* Limit header width */
+    margin: 0 auto;
+    /* Center the header content */
+    gap: 20px;
+    /* Space between flex items */
+}
+
+
+/* Logo */
+.logo img {
+    /* Control the size of the logo image directly */
+    max-width: 150px;
+    /* Set a maximum width for the logo */
+    height: auto;
+    /* Maintain aspect ratio */
+    display: block;
+    /* Remove extra space below image */
+}
+
+.logo img:hover {
+    transform: scale(1.05);
+    /* Interactive effect */
+}
+
+/* Navigation */
+.navigation ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navigation li {
+    margin-left: 25px;
+}
+
+.navigation a {
+    text-decoration: none;
+    color: inherit;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navigation a:hover {
+    color: #d17a47;
+    /* A warmer color on hover */
+}
+
+/* Dropdown (Focus on accessibility and interaction) */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color var(--transition-speed);
+}
+
+.dropdown button:hover,
+.dropdown:hover button {
+    background-color: var(--secondary-color);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: var(--shadow-light);
+    z-index: 1;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid var(--header-tan);
+    transform: translateY(5px);
+}
+
+.dropdown-content a {
+    color: var(--secondary-color);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--background-cream);
+    color: var(--primary-color);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    /* Show menu on hover */
+}
+
+/* Search and Login */
+.search-container input[type="text"] {
+    border: 2px solid var(--header-tan);
+    padding: 12px 20px;
+    font-size: 16px;
+    outline: none;
+    width: 300px;
+    border-radius: 25px 0 0 25px;
+    background-color: #fffbf0;
+    /* Light cream background */
+    color: var(--secondary-color);
+    transition: border-color 0.3s;
+}
+
+.search-container input[type="text"]:focus {
+    border-color: var(--primary-color);
+}
+
+.search-container button,
+.nav-login-btn,
+.mode-toggle-btn {
+    padding: 7px 10px 12px 5px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 0 25px 25px 0;
+    transition: background-color var(--transition-speed), transform 0.2s;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.nav-login-btn {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+}
+
+.search-container button:hover {
+    background-color: #bb6e41;
+
+}
+
+.nav-login-btn {
+    text-decoration: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    display: inline-block;
+    /* Ensure padding works */
+}
+
+.search-container button:hover,
+.nav-login-btn:hover,
+.mode-toggle-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* --- Main Content & Menu Layout --- */
+main {
+    padding: 40px 20px;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    position: relative;
+    height: 80vh;
+    /* Takes up 80% of the viewport height */
+    min-height: 500px;
+    background-image: url('/Frontend/index/Cake.jpeg');
+    /* Use a high-quality image */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /* Parallax effect */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-bottom: 50px;
+    border-radius: 0 0 20px 20px;
+    /* Rounded corners at the bottom */
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hero-cakes {
+    background-image: url('/Frontend/index/Cake.jpeg');
+}
+
+.hero-icecream {
+    background-image: url('/Frontend/index/Ice Cream.jpeg');
+}
+
+.hero-cookies {
+    background-image: url('/Frontend/index/Cookies.jpeg');
+}
+
+.hero-drinks {
+    background-image: url('/Frontend/index/Drinks.jpeg');
+}
+
+.hero-specials {
+    background-image: url('/Frontend/index/Custom.jpeg');
+}
+
+.hero-generic {
+    background-image: url('/Frontend/images/logo 2.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: var(--color-background);
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+    /* Gradient overlay */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 20px;
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero-title {
+    font-family: var(--font-serif);
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    /* Ensure white text */
+}
+
+.hero-subtitle {
+    font-family: var(--font-sans);
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    color: #f0f0f0;
+}
+
+.hero-cta {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: var(--color-accent);
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 15px rgba(218, 165, 32, 0.4);
+}
+
+.hero-cta:hover {
+    transform: translateY(-3px);
+    background-color: #fff;
+    color: var(--primary-color);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Section Headings --- */
+section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+    position: relative;
+    display: inline-block;
+}
+
+section h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--color-accent);
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+/* --- Content Container --- */
+.content-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+}
+
+.menu-grid {
+    display: grid;
+    /* Responsive columns for medium to large screens */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    /* Increased gap */
+    margin-top: 30px;
+}
+
+.menu-link-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--secondary-color);
+    background-color: white;
+    padding: 0;
+    /* Remove padding to let image fill width */
+    border-radius: 15px;
+    /* More rounded */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    /* Softer shadow */
+    border: none;
+    /* Remove border */
+    overflow: hidden;
+    /* Clip image */
+    transition: all 0.3s ease;
+}
+
+/* Interactive Menu Card */
+.menu-link-card:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    transform: translateY(-10px);
+}
+
+.menu-link-card h3 {
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding: 20px 25px 5px;
+    /* Add padding for text */
+    font-size: 1.4rem;
+    color: var(--primary-color);
+}
+
+.menu-image {
+    width: 100%;
+    height: 250px;
+    /* Fixed height for consistency */
+    object-fit: cover;
+    border-radius: 0;
+    margin-bottom: 0;
+    border: none;
+    transition: transform 0.5s ease;
+}
+
+.menu-link-card:hover .menu-image {
+    transform: scale(1.05);
+    /* Zoom effect on hover */
+}
+
+.menu-link-card ul {
+    list-style-type: none;
+    padding: 0 25px 25px;
+    /* Add padding for text */
+    flex-grow: 1;
+    /* Ensures all cards stretch to same height */
+}
+
+.menu-link-card li {
+    padding: 8px 0;
+    border-bottom: 1px dotted var(--header-tan);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-size: 0.95rem;
+}
+
+.menu-link-card li strong {
+    color: var(--primary-color);
+}
+
+.menu-link-card li .price {
+    font-weight: bold;
+    color: var(--secondary-color);
+    white-space: nowrap;
+    margin-left: 10px;
+}
+
+/* --- Footer --- */
+.footer-container {
+    background-color: #3e2723;
+    /* Dark Brown */
+    color: #fffbf0;
+    /* Cream Text */
+    padding: 40px 20px;
+    margin-top: 50px;
+    font-size: 0.95rem;
+    border-top: 5px solid var(--gold-accent);
+}
+
+.footer-message {
+    text-align: center;
+    font-style: italic;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: var(--gold-accent);
+    font-family: var(--font-serif);
+}
+
+.footer-grid {
+    max-width: 1000px;
+    margin: 0 auto 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: left;
+}
+
+.footer-links h3 {
+    color: var(--gold-accent);
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(218, 165, 32, 0.3);
+    padding-bottom: 5px;
+    display: inline-block;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-links a {
+    color: #fffbf0;
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--gold-accent);
+    padding-left: 5px;
+    /* Subtle slide effect */
+}
+
+.footer-copyright {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Social Icons specific styling */
+.social-icons {
+    display: flex;
+    flex-direction: column;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+}
+
+/* --- Media Queries for Responsiveness --- */
+@media (max-width: 768px) {
+    .header-container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .navigation,
+    .search-container,
+    .login,
+    .dark-mode {
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .navigation ul {
+        justify-content: space-around;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- NEW: Ice Cream Card Styles (Ice Cream Page) --- */
+.icecream-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.icecream-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px var(--color-shadow);
+    transition: transform 0.3s, box-shadow 0.3s, background-color var(--transition-speed);
+}
+
+.icecream-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.icecream-card img {
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.icecream-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    border-bottom: none;
+}
+
+.icecream-card p {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    min-height: 48px;
+}
+
+.icecream-verification {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.add-to-cart-btn {
+    padding: 10px 20px;
+    margin-top: auto;
+    /* Pushes button to bottom of card */
+    border-radius: 6px;
+    background-color: var(--color-accent);
+    color: var(--color-background);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.add-to-cart-btn:hover {
+    background-color: var(--color-text-primary);
+    transform: scale(1.02);
+}
+
+/* --- NEW: Price and Description styles for item cards --- */
+.cake-card .price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--color-text-primary);
+    margin: 10px 0;
+}
+
+.cake-card .description {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    min-height: 48px;
+    /* Ensure consistent height */
+    margin-bottom: 15px;
+}
+
+/* --- ADD THESE STYLES TO src/Home/App.css --- */
+
+/* --- Auth Page Styles --- */
+.auth-container {
+    max-width: 450px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px var(--color-shadow);
+    text-align: center;
+}
+
+.auth-container h1 {
+    font-size: 1.8rem;
+    color: var(--color-text-primary);
+    margin-bottom: 25px;
+}
+
+.auth-container h2 {
+    font-size: 1.5rem;
+    color: var(--color-text-secondary);
+    border-bottom: none;
+    /* Override global h2 style */
+    margin-bottom: 20px;
+}
+
+/* Google Button Container */
+.google-login-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* Divider */
+.divider {
+    border: 0;
+    height: 1px;
+    background-color: var(--color-border);
+    margin: 25px 0;
+}
+
+/* Login/Signup Forms */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.auth-form input[type="email"],
+.auth-form input[type="password"],
+.auth-form input[type="text"] {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    padding: 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    background-color: var(--color-background);
+    color: var(--color-text-secondary);
+}
+
+.auth-form button {
+    padding: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 6px;
+    background-color: var(--color-text-primary);
+    color: var(--color-background);
+    cursor: pointer;
+}
+
+.auth-form button:hover {
+    background-color: var(--color-accent);
+}
+
+.auth-form p {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+}
+
+.auth-form p a {
+    font-weight: bold;
+    color: var(--color-text-primary);
+    text-decoration: underline;
+}
+
+.auth-separator {
+    text-align: center;
+    color: #888;
+    margin: 10px 0 5px 0;
+    /* Adjust spacing around the 'OR' */
+}
+
+/* Ensure the message is centered and distinct */
+.auth-message {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+    color: var(--color-primary-dark);
+    /* Use your primary color for success */
+}
+
+/* Example error styling */
+.auth-message:contains("failed"),
+.auth-message:contains("error") {
+    color: #e53e3e;
+    /* Use a red color for errors */
+}
+
+#message-area {
+    margin-top: 20px;
+    font-weight: bold;
+    color: var(--color-text-primary);
+}
+
+/* --- ADD THESE STYLES to src/Home/App.css --- */
+
+/* --- Header Cart Button --- */
+.cart-button-container {
+    margin-left: 10px;
+}
+
+.nav-cart-btn {
+    display: block;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+    background-color: black;
+    color: white;
+    transition: background-color var(--transition-speed);
+    position: relative;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.nav-cart-btn:hover {
+    background-color: black;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: red;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- Add to Cart Animation --- */
+.cake-card,
+.icecream-card {
+    position: relative;
+    /* Needed for the animation to position correctly */
+}
+
+.add-to-cart-animation {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--color-accent);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    z-index: 10;
+    animation: fadeOut 1s ease-out;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: translate(-50%, -100%) scale(0.8);
+    }
+}
+
+/* --- Checkout Page Styles --- */
+.checkout-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: var(--color-surface);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px var(--color-shadow);
+}
+
+.cart-items-list {
+    margin-bottom: 30px;
+}
+
+.cart-item {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    border-bottom: 1px solid var(--color-border);
+    padding: 15px 0;
+}
+
+.cart-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.item-details h2 {
+    font-size: 1.2rem;
+    margin: 0 0 10px;
+    text-align: left;
+    border: none;
+}
+
+.item-details p {
+    margin: 0;
+}
+
+.item-price {
+    margin-left: auto;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.cart-total {
+    text-align: right;
+    font-size: 1.5rem;
+    margin-top: 20px;
+}
+
+/* Checkout Form */
+.checkout-form {
+    border-top: 2px dashed var(--color-border);
+    padding-top: 30px;
+}
+
+.payment-options {
+    display: flex;
+    gap: 20px;
+    margin: 15px 0;
+}
+
+.payment-options label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.1rem;
+}
+
+.payment-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: var(--color-background);
+    border-radius: 8px;
+}
+
+.payment-fields label {
+    font-weight: bold;
+    color: var(--color-text-secondary);
+}
+
+.payment-fields input {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    padding: 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+}
+
+.checkout-btn {
+    width: 100%;
+    margin-top: 25px;
+    font-size: 1.2rem;
+}
+
+/* --- Add these styles to src/Home/App.css --- */
+
+/* Ensure the login container has position relative for the dropdown */
+.login {
+    position: relative;
+    z-index: 20;
+    /* Keep dropdown above other content */
+}
+
+/* Dropdown Container */
+.profile-dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Profile Button (The trigger) - inherits nav-login-btn styles but adds flex */
+.profile-button {
+    /* Ensures alignment and overrides any Link styling */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 10px 15px;
+    /* Adjust padding to match other buttons */
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    background-color: #e09458;
+    /* Match your existing nav-login-btn style */
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    /* Position below the button */
+    right: 0;
+    margin-top: 5px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    width: 180px;
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0;
+}
+
+/* Styling for links and buttons inside the dropdown */
+.dropdown-menu a,
+.dropdown-menu .logout-button {
+    text-decoration: none;
+    color: #333;
+    /* Dark text */
+    padding: 10px 15px;
+    text-align: left;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+    width: 100%;
+    /* Make button fill the width */
+}
+
+.dropdown-menu a:hover,
+.dropdown-menu .logout-button:hover {
+    background-color: #f7f7f7;
+    color: #e09458;
+    /* Highlight color on hover */
+}
+
+.dropdown-divider {
+    height: 1px;
+    background-color: #ddd;
+    margin: 5px 0;
+}

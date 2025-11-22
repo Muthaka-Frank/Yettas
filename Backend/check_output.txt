@@ -1,0 +1,40 @@
+   Compiling radium v0.7.0
+   Compiling native-tls v0.2.14
+   Compiling serde v1.0.228
+    Checking miniz_oxide v0.8.9
+   Compiling bytestring v1.5.0
+    Checking zstd-safe v7.2.4
+    Checking regex v1.12.2
+   Compiling rustc_version v0.2.3
+    Checking brotli-decompressor v5.0.0
+    Checking winreg v0.50.0
+    Checking crc32fast v1.5.0
+    Checking actix-utils v3.0.1
+    Checking rand_chacha v0.3.1
+    Checking actix-rt v2.11.0
+    Checking actix-service v2.0.3
+   Compiling thiserror-impl v1.0.69
+    Checking schannel v0.1.28
+   Compiling ahash v0.8.12
+    Checking encoding_rs v0.8.35
+   Compiling cookie v0.16.2
+    Checking mime v0.3.17
+    Checking tap v1.0.1
+   Compiling rustls v0.21.12
+    Checking try-lock v0.2.5
+    Checking ipnet v2.11.0
+    Checking bitflags v2.10.0
+   Compiling heck v0.4.1
+   Compiling winapi v0.3.9
+    Checking semver-parser v0.7.0
+   Compiling ipconfig v0.3.2
+   Compiling thiserror v2.0.17
+   Compiling regex-lite v0.1.8
+    Checking matches v0.1.10
+    Checking idna v0.2.3
+   Compiling enum-as-inner v0.4.0
+    Checking actix-codec v0.5.2
+error: failed to remove C:\Users\frank\OneDrive\Documents\MyProjects\Yetta\Backend\target\debug\build\thiserror-f27cd1ab1adcb71a\build_script_build-f27cd1ab1adcb71a.build_script_build.e238e06daaf7aa6a-cgu.0.rcgu.o: The process cannot access the file because it is being used by another process. (os error 32)
+
+error: could not compile `thiserror` (build script) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...

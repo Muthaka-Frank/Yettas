@@ -1,0 +1,93 @@
+
+/* --- Cake Grid Layout --- */
+.cake-container {
+  display: flex;
+  flex-wrap: wrap; /* Allows cakes to wrap on smaller screens */
+  justify-content: center;
+  gap: 25px; /* Space between the cake cards */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+/* --- Individual Cake Card Styling --- */
+.cake-card {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  padding: 20px;
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+  border-bottom: 5px solid; /* Placeholder for color-coded border */
+}
+/* --- Interactive Hover Effect (CSS Magic!) --- */
+.cake-card img {
+/* This 10px padding is the new code */
+  padding: 10px; 
+
+  width: 100%;
+  height: 200px;
+  object-fit: cover; 
+  /* To ensure the image and padding don't enlarge the card size: */
+  box-sizing: border-box; 
+  
+  border-radius: 10px;
+  margin-bottom: 5px; /* Reduced margin to account for padding */
+}
+.cake-card:hover {
+  transform: translateY(-10px) scale(1.02); /* Lifts and slightly enlarges the card */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+.cake-card h2 {
+  margin-top: 0;
+  font-size: 1.8em;
+  text-transform: capitalize;
+  color: #444;
+}
+.cake-card p {
+  font-size: 0.95em;
+  color: #666;
+  min-height: 40px;
+}
+/* --- Flavor-Specific Styling (Colors) --- */
+
+/* Chocolate */
+.chocolate { border-color: #5d4037; } /* Deep brown */
+.chocolate:hover h2 { color: #5d4037; }
+
+/* Vanilla */
+.vanilla { border-color: #ffe082; } /* Soft yellow */
+.vanilla:hover h2 { color: #ffe082; }
+
+/* Red Velvet */
+.red-velvet { border-color: #c62828; } /* Classic red */
+.red-velvet:hover h2 { color: #c62828; }
+
+/* Lemon */
+.lemon { border-color: #ffeb3b; } /* Bright yellow */
+.lemon:hover h2 { color: #ffeb3b; }
+
+/* Coconut */
+.coconut { border-color: #b0bec5; } /* Pale gray/white */
+.coconut:hover h2 { color: #b0bec5; }
+
+/* Piña Colada */
+.pina-colada { border-color: #00bcd4; } /* Tropical blue/teal */
+.pina-colada:hover h2 { color: #00bcd4; }
+
+/* Orange Cake (Bright citrus color) */
+.orange { border-color: #ff9800; } 
+.orange:hover h2 { color: #ff9800; }
+
+/* Cinnamon Swirl Bundt Cake (Warm spice color) */
+.cinnamon { border-color: #795548; } 
+.cinnamon:hover h2 { color: #795548; }
+
+/* Butter Cake (Rich golden color) */
+.butter { border-color: #ffc107; } 
+.butter:hover h2 { color: #ffc107; }
+
+/* --- Footer Styling --- */
+
+/* Style for the button/link */

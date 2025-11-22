@@ -1,0 +1,204 @@
+/* Yetta's Pastries - Consistent Styling */
+
+/* --- Root Variables & General Reset --- */
+:root {
+    --primary-color: #A0522D;       /* Sienna: A warm, rich brown */
+    --secondary-color: #8B4513;     /* Saddle Brown: Darker accent/text */
+    --background-cream: #f7f7f7;    /* Creamy, vanilla background */
+    --header-tan: #D2B48C;          /* Light Tan for nav/header */
+    --gold-accent: #DAA520;         /* Goldenrod: Elegant accents */
+    --font-serif: 'Georgia', serif;
+    --font-sans: 'Arial', sans-serif;
+}
+
+body {
+    font-family: var(--font-serif);
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-cream);
+    color: var(--secondary-color);
+    line-height: 1.6;
+}
+
+/* --- Typography --- */
+h1, h2, h3 {
+    font-family: var(--font-sans);
+    color: var(--primary-color);
+    text-align: center;
+    margin-top: 0.5em;
+}
+
+h1 {
+    font-size: 2.2em;
+    color: var(--secondary-color);
+}
+
+h2 {
+    font-size: 1.8em;
+    border-bottom: 2px dashed var(--header-tan);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+h3 {
+    text-align: left;
+    color: var(--primary-color);
+    font-size: 1.4em;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+/* --- Header & Navigation --- */
+header {
+    background-color: var(--header-tan);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--secondary-color);
+    padding: 8px 15px;
+    margin: 0 5px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* --- Main Content & Menu Layout --- */
+main {
+    padding: 30px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#welcome {
+    text-align: center;
+    padding: 30px;
+    margin-bottom: 40px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+#specials {
+    margin-bottom: 40px;
+}
+
+/* Menu Grid (used for both #menu and the two categories inside #specials) */
+#menu, #specials {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid for categories */
+    gap: 30px;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 30px;
+}
+
+/* NEW: Style the anchor tag to look like the div card */
+.menu-link-card {
+    /* Required to make the anchor tag a block element in the grid */
+    display: block; 
+    text-decoration: none; /* Crucial: removes the underline from the link */
+    color: var(--secondary-color); /* Inherit the body text color */
+
+    /* Apply all the previous .menu-category styling here */
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Initial subtle shadow */
+    border-top: 5px solid var(--gold-accent); 
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out; 
+}
+
+/* NEW: Interactive shadow on hover (applied to the anchor tag) */
+.menu-link-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+    transform: translateY(-5px); /* Slightly lift the card */
+}
+
+/* Old .menu-category styling is now applied to .menu-link-card. 
+   We only need to ensure list styles are targeted correctly: */
+
+.menu-image {
+    width: 100%; 
+    height: auto;
+    max-height: 400px; 
+    object-fit: cover; 
+    border-radius: 4px; 
+    margin-bottom: 15px; 
+    border: 1px solid var(--header-tan);
+}
+
+.menu-link-card ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu-link-card li {
+    padding: 10px 0;
+    border-bottom: 1px dotted var(--header-tan);
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95em;
+}
+
+.menu-link-card li strong {
+    color: var(--primary-color);
+}
+
+.menu-link-card li:last-child {
+    border-bottom: none;
+}
+
+/* (All other existing styles remain the same, targeting the appropriate elements.) */
+.cta-message {
+    color: #bdc3c7;
+    text-align: center;
+    padding-top: 15px;
+    border-bottom: none !important; 
+    display: block !important; 
+}
+
+.cta-message a {
+    color: var(--gold-accent);
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.cta-message a:hover {
+    color: var(--primary-color);
+}
+
+
+/* --- Footer --- */
+footer {
+    background-color: var(--secondary-color);
+    color: var(--background-cream);
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+    font-size: 0.9em;
+}

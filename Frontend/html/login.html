@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yetta's Pastries - Account</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <link rel="stylesheet" href="login.css"> </head>
+<body>
+
+    <div class="container">
+        <h1>Welcome to Yetta's Pastries 🍰</h1>
+
+        <div id="g_id_onload"
+             data-client_id="YOUR_CLIENT_ID" data-context="signin"
+             data-ux_mode="popup"
+             data-callback="handleGoogleLogin"
+             data-auto_prompt="false">
+        </div>
+
+        <div class="g_id_signin"
+             data-type="standard"
+             data-shape="rectangular"
+             data-theme="outline"
+             data-text="signin_with"
+             data-size="large"
+             data-logo_alignment="left">
+        </div>
+        <hr>
+
+        <form id="login-form" class="auth-form">
+            <h2>Login with Email</h2>
+            <input type="email" id="login-email" placeholder="Email Address" required>
+            <input type="password" id="login-password" placeholder="Password" required>
+            <button type="submit">Log In</button>
+            <p>Don't have an account? <a href="#" id="switch-to-signup">Sign Up here.</a></p>
+        </form>
+
+        <form id="signup-form" class="auth-form" style="display: none;">
+            <h2>Create an Account</h2>
+            <input type="text" id="signup-name" placeholder="Full Name" required>
+            <input type="email" id="signup-email" placeholder="Email Address" required>
+            <input type="password" id="signup-password" placeholder="Password (min 6 chars)" required>
+            <button type="submit">Sign Up</button>
+            <p>Already have an account? <a href="#" id="switch-to-login">Log In here.</a></p>
+        </form>
+
+        <p id="message-area" style="color: red;"></p>
+
+    </div>
+
+    <!--<script src="script\script.js"></script>-->
+</body>
+</html>
