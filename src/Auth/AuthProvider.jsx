@@ -47,16 +47,16 @@ export const AuthProvider = ({ children }) => {
                 if (!initialUser) {
                     // This could happen if user storage was cleared but token wasn't.
                     // For now, we assume if token is there, the user is 'logged in'.
-                    console.log("Token found but user data missing. Proceeding with stored token.");
+                    // console.log("Token found but user data missing. Proceeding with stored token.");
                 }
             } else {
                 // Token is expired or invalid, force logout
-                console.log("Token expired or invalid. Logging out.");
+                // console.log("Token expired or invalid. Logging out.");
                 logout();
             }
         }
         setLoading(false);
-    }, [initialToken]);
+    }, [initialToken, initialUser]);
 
 
     const contextValue = {

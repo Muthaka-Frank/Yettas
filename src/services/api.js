@@ -51,8 +51,6 @@ export const verifyGoogleToken = async (credential) => {
     }
 };
 
-// You do not need to change the AuthPage.jsx component; it uses these exported functions.
-
 /**
  * Sends a password reset link to the user's email.
  */
@@ -76,5 +74,75 @@ export const resetPassword = async (token, newPassword) => {
     } catch (error) {
         const errorMessage = error.response?.data?.message || 'Reset failed. Server error.';
         return { success: false, message: errorMessage };
+    }
+};
+
+/**
+ * Fetches the user's order history.
+ */
+export const fetchOrders = async (token) => {
+    try {
+        const response = await axios.get(`${API_BASE_URL.replace('/auth', '/orders')}`, {
+            headers: { Authorization: `Bearer ${token}` }
+        });
+        return { success: true, data: response.data };
+    } catch (error) {
+        return { success: false, message: error.response?.data?.message || 'Failed to fetch orders.' };
+    }
+};
+
+/**
+ * Fetches the user's favorites.
+ */
+export const fetchFavorites = async (token) => {
+    try {
+        const response = await axios.get(`${API_BASE_URL.replace('/auth', '/favorites')}`, {
+            headers: { Authorization: `Bearer ${token}` }
+        });
+        return { success: true, data: response.data };
+    } catch (error) {
+        return { success: false, message: error.response?.data?.message || 'Failed to fetch favorites.' };
+    }
+};
+
+/**
+ * Adds an item to favorites.
+ */
+export const addFavorite = async (token, itemId) => {
+    try {
+        await axios.post(`${API_BASE_URL.replace('/auth', '/favorites')}`, { item_id: itemId }, {
+            headers: { Authorization: `Bearer ${token}` }
+        });
+        return { success: true };
+    } catch (error) {
+        return { success: false, message: error.response?.data?.message || 'Failed to add favorite.' };
+    }
+};
+
+/**
+ * Removes an item from favorites.
+ */
+export const removeFavorite = async (token, itemId) => {
+    try {
+        await axios.delete(`${API_BASE_URL.replace('/auth', '/favorites')}/${itemId}`, {
+            headers: { Authorization: `Bearer ${token}` }
+        });
+        return { success: true };
+    } catch (error) {
+        return { success: false, message: error.response?.data?.message || 'Failed to remove favorite.' };
+    }
+};
+
+/**
+ * Processes the checkout.
+ */
+export const checkout = async (token, checkoutData) => {
+    try {
+        const response = await axios.post(`${API_BASE_URL.replace('/auth', '/cart')}/checkout`, checkoutData, {
+            headers: { Authorization: `Bearer ${token}` }
+        });
+        return { success: true, ...response.data };
+    } catch (error) {
+        return { success: false, message: error.response?.data?.message || 'Checkout failed.' };
     }
 };

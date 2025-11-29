@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useCart } from '../context/CartContext.jsx';
 import { useAuth } from '../Auth/AuthContext.jsx';
+import { checkout as apiCheckout } from '../services/api';
 import '../Home/App.css';
 import '../Home/index.css';
 
@@ -46,28 +47,21 @@ const CheckoutPage = () => {
                 image_src: item.imageSrc || ''
             }));
 
-            const response = await fetch('http://localhost:8080/api/cart/checkout', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify({
-                    payment_method: paymentMethod,
-                    phone_number: paymentMethod === 'mpesa' ? phoneNumber : null,
-                    bank_account: paymentMethod === 'bank' ? '123456789' : null, // Placeholder for bank
-                    items: orderItems,
-                    total: total
-                }),
-            });
+            const checkoutData = {
+                payment_method: paymentMethod,
+                phone_number: paymentMethod === 'mpesa' ? phoneNumber : null,
+                bank_account: paymentMethod === 'bank' ? '123456789' : null, // Placeholder for bank
+                items: orderItems,
+                total: total
+            };
 
-            const data = await response.json();
+            const result = await apiCheckout(token, checkoutData);
 
-            if (response.ok) {
-                setMessage({ type: 'success', text: `Order placed successfully! Status: ${data.status || 'Processing'}` });
+            if (result.success) {
+                setMessage({ type: 'success', text: `Order placed successfully! Status: ${result.status || 'Processing'}` });
                 clearCart();
             } else {
-                setMessage({ type: 'error', text: data.message || 'Checkout failed.' });
+                setMessage({ type: 'error', text: result.message });
             }
         } catch (error) {
             console.error('Checkout Error:', error);

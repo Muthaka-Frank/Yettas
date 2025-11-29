@@ -1,0 +1,58 @@
+﻿cargo : warning: 
+unused import: 
+`DateTime`
+At line:1 char:1
++ cargo check > 
+cargo_warnings.txt 
+2>&1
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (warning   
+ : unused import:    
+ `DateTime`:Stri    
+ng) [], RemoteEx    
+ception
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+ --> src\handlers\pas
+sword_reset.rs:2:47
+  |
+2 | ...c, DateTime}};
+  |       ^^^^^^^^
+  |
+  = note: `#[warn(unu
+sed_imports)]` on by 
+default
+
+warning: unused 
+variable: `user`
+  --> src\handlers\pa
+ssword_reset.rs:36:9
+   |
+36 | ...et user = ...
+   |       ^^^^ 
+help: if this is 
+intentional, prefix 
+it with an 
+underscore: `_user`
+   |
+   = note: `#[warn(un
+used_variables)]` on 
+by default
+
+warning: 
+`yetta_backend` (bin 
+"yetta_backend") 
+generated 2 warnings 
+(run `cargo fix 
+--bin 
+"yetta_backend"` to 
+apply 1 suggestion)
+    Finished `dev` 
+profile [unoptimized 
++ debuginfo] 
+target(s) in 1.14s

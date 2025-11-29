@@ -1,0 +1,16 @@
+﻿
+> yetta@0.0.0 lint
+> eslint .
+
+
+C:\Users\frank\OneDrive\Documents\MyProjects\Yettas\src\Auth\AuthContext.jsx
+  2:1  warning  Unused eslint-disable directive (no problems were reported from 'react-refresh/only-export-components')
+
+C:\Users\frank\OneDrive\Documents\MyProjects\Yettas\src\Auth\AuthPage.jsx
+  58:18  error  '_error' is defined but never used  no-unused-vars
+  78:18  error  '_error' is defined but never used  no-unused-vars
+  98:18  error  'error' is defined but never used   no-unused-vars
+
+Γ£û 4 problems (3 errors, 1 warning)
+  0 errors and 1 warning potentially fixable with the `--fix` option.
+

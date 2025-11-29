@@ -1,5 +1,6 @@
 // src/Orders/OrdersPage.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { fetchOrders as apiFetchOrders } from '../services/api';
 import { useAuth } from '../Auth/AuthContext.jsx';
 import '../Home/App.css';
 import '../Home/index.css';
@@ -10,37 +11,25 @@ const OrdersPage = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const fetchOrders = useCallback(async () => {
+        const result = await apiFetchOrders(token);
+        if (result.success) {
+            // Sort by date descending (newest first)
+            const sortedOrders = result.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+            setOrders(sortedOrders);
+        } else {
+            setError(result.message);
+        }
+        setLoading(false);
+    }, [token]);
+
     useEffect(() => {
         if (isLoggedIn && token) {
             fetchOrders();
         } else {
             setLoading(false);
         }
-    }, [isLoggedIn, token]);
-
-    const fetchOrders = async () => {
-        try {
-            const response = await fetch('http://localhost:8080/api/orders', {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                // Sort by date descending (newest first)
-                const sortedOrders = data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-                setOrders(sortedOrders);
-            } else {
-                setError('Failed to fetch orders.');
-            }
-        } catch (err) {
-            console.error("Error fetching orders:", err);
-            setError('An error occurred while loading orders.');
-        } finally {
-            setLoading(false);
-        }
-    };
+    }, [isLoggedIn, token, fetchOrders]);
 
     if (!isLoggedIn) {
         return (

@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext } from 'react';
+import React from 'react';
 
 // Define the shape of the context state
 const AuthContext = createContext({
@@ -10,6 +11,7 @@ const AuthContext = createContext({
     loading: true, // Indicates if the initial token check is complete
 });
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => useContext(AuthContext);
 
 // 💡 NOTE: The AuthProvider logic will be placed in the separate file, AuthProvider.jsx,

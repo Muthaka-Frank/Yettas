@@ -48,7 +48,7 @@ const SearchPage = () => {
 
             <div className="content-container">
                 {filteredItems.length > 0 ? (
-                    <section className="menu-grid" style={{ display: 'flex', flexWrap: 'wrap', gap: '30px', marginTop: '20px', justifyContent: 'flex-start' }}>
+                    <section className="menu-grid" style={{ display: 'flex', flexWrap: 'wrap', gap: '30px', marginTop: '20px', justifyContent: 'center' }}>
                         {filteredItems.map((item, index) => (
                             <div
                                 key={item.id}

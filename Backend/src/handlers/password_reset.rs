@@ -1,5 +1,5 @@
 use actix_web::{web, HttpResponse, Responder};
-use mongodb::{Client, Collection, bson::{doc, DateTime}};
+use mongodb::{Client, Collection, bson::doc};
 use serde::{Deserialize, Serialize};
 use log;
 use uuid::Uuid;
@@ -33,7 +33,7 @@ pub async fn forgot_password(client: web::Data<Client>, req: web::Json<ForgotPas
     let users_collection = get_user_collection(&client);
     
     // 1. Check if user exists
-    let user = match users_collection.find_one(doc! { "email": &req.email }, None).await {
+    let _user = match users_collection.find_one(doc! { "email": &req.email }, None).await {
         Ok(Some(user)) => user,
         Ok(None) => {
             // For security, don't reveal that the user doesn't exist.

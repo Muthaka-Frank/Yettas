@@ -1,7 +1,13 @@
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
 #root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
+    width: 100%;
+    margin: 0;
+    padding: 0;
     text-align: center;
 }
 
@@ -9,10 +15,18 @@
     /* We can remove explicit width/height here if image itself controls it, or set a max */
     flex-shrink: 0;
     /* Prevent the logo from shrinking */
-    padding: 5px;
-    /* Add some padding around the logo if desired */
-    /* background-color: var(--color-surface); /* Optional: if you want a background behind the logo */
-    /* border-radius: 8px; /* Optional: if you want rounded corners */
+    padding: 0;
+    /* Removed padding to avoid border-like look */
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.logo img,
+.logo a {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 
@@ -66,9 +80,13 @@ body {
     font-family: var(--font-serif);
     margin: 0;
     padding: 0;
+    width: 100%;
+    /* Ensure body takes full width */
     background-color: var(--background-cream);
     color: var(--secondary-color);
     line-height: 1.6;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll if something overflows slightly */
 }
 
 /* --- Accessibility & Typography --- */
@@ -86,17 +104,15 @@ header {
 
 .header-container {
     display: flex;
-    /* Use Flexbox for alignment */
     align-items: center;
-    /* Vertically align items in the middle */
     justify-content: space-between;
-    /* Distribute items with space between them */
-    max-width: 98%;
-    /* Limit header width */
+    max-width: 1300px;
+    /* Match main content max-width */
     margin: 0 auto;
-    /* Center the header content */
     gap: 20px;
-    /* Space between flex items */
+    flex-wrap: wrap;
+    /* Allow wrapping on smaller screens */
+    padding: 10px 20px;
 }
 
 
@@ -193,17 +209,38 @@ header {
 }
 
 /* Search and Login */
+.search-container {
+    flex: 1 1 300px;
+    /* Grow and shrink, base width 300px */
+    display: flex;
+    justify-content: center;
+    min-width: 200px;
+}
+
+.search-container form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .search-container input[type="text"] {
     border: 2px solid var(--header-tan);
     padding: 12px 20px;
     font-size: 16px;
     outline: none;
-    width: 300px;
+    width: 100%;
+    /* Flexible width */
+    max-width: 400px;
+    /* Don't get too wide */
+    min-width: 150px;
+    /* Don't get too narrow */
     border-radius: 25px 0 0 25px;
     background-color: #fffbf0;
     /* Light cream background */
     color: var(--secondary-color);
     transition: border-color 0.3s;
+    text-align: center;
+    /* Align search text in the middle */
 }
 
 .search-container input[type="text"]:focus {
@@ -404,7 +441,8 @@ section h2::after {
 .menu-grid {
     display: grid;
     /* Responsive columns for medium to large screens */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /* Slightly smaller min-width */
     gap: 40px;
     /* Increased gap */
     margin-top: 30px;
@@ -499,6 +537,11 @@ section h2::after {
     margin-top: 50px;
     font-size: 0.95rem;
     border-top: 5px solid var(--gold-accent);
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    border-radius: 0;
 }
 
 .footer-message {
@@ -572,27 +615,135 @@ section h2::after {
 }
 
 /* --- Media Queries for Responsiveness --- */
-@media (max-width: 768px) {
+/* --- Media Queries for Responsiveness --- */
+@media (max-width: 900px) {
     .header-container {
-        flex-wrap: wrap;
         justify-content: center;
+        /* Center items when they start wrapping */
+        gap: 15px;
+    }
+
+    .search-container {
+        order: 3;
+        /* Move search to the bottom if needed, or keep it flexible */
+        width: 100%;
+        /* Full width search on tablets/smaller laptops */
+        flex-basis: 100%;
+    }
+
+    .logo {
+        margin-bottom: 5px;
+    }
+}
+
+@media (max-width: 600px) {
+    .header-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        padding: 15px 10px;
+    }
+
+    .logo img {
+        max-width: 120px;
+        /* Slightly smaller logo on mobile */
     }
 
     .navigation,
-    .search-container,
-    .login,
-    .dark-mode {
+    .dropdown,
+    .cart-button-container,
+    .login {
+        /* Ensure these don't stretch weirdly */
+        width: auto;
+    }
+
+    /* Group navigation elements if possible, or just let them flow */
+
+    .search-container {
         width: 100%;
-        text-align: center;
+        order: 10;
+        /* Ensure search is at the bottom or top depending on preference, usually bottom is easier to reach or top for visibility. Let's keep it flow naturally or force it. */
         margin-top: 10px;
     }
 
-    .navigation ul {
-        justify-content: space-around;
+    .search-container input[type="text"] {
+        width: 100%;
+        /* Full width input */
+        max-width: none;
     }
 
     .footer-grid {
         grid-template-columns: 1fr;
+        text-align: center;
+        gap: 30px;
+    }
+
+    /* --- Responsive Body Adjustments --- */
+
+    /* Hero Section Mobile */
+    .hero-section {
+        height: 60vh;
+        /* Reduce height on mobile */
+        min-height: 350px;
+        border-radius: 0 0 15px 15px;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+        /* Smaller title */
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .hero-cta {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+
+    /* Main Content Mobile */
+    main {
+        padding: 20px 10px;
+        /* Reduce padding */
+    }
+
+    .content-container {
+        padding: 0 10px 30px;
+    }
+
+    section h2 {
+        font-size: 2rem;
+        margin-bottom: 25px;
+    }
+
+    /* Menu Grid Mobile */
+    .menu-grid {
+        grid-template-columns: 1fr;
+        /* Single column on mobile */
+        gap: 25px;
+    }
+
+    .menu-link-card {
+        margin: 0 10px;
+        /* Add side margin if needed, or rely on grid gap */
+    }
+
+    /* Footer Mobile */
+    .footer-container {
+        padding: 30px 15px;
+    }
+}
+
+@media (max-width: 400px) {
+
+    /* Very small screens */
+    .menu-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-title {
+        font-size: 1.8rem;
     }
 }
 

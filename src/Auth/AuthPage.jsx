@@ -24,7 +24,7 @@ const AuthPageContent = () => {
     const [loginPassword, setLoginPassword] = useState('');
     const [signupName, setSignupName] = useState('');
     const [signupEmail, setSignupEmail] = useState('');
-    const [signupPassword, setSignupPassword] = useState(''); // 👈 Added missing state initialization
+    const [signupPassword, setSignupPassword] = useState('');
 
     // State for error/success messages
     const [message, setMessage] = useState('');
@@ -55,7 +55,7 @@ const AuthPageContent = () => {
             } else {
                 setMessage(result.message || 'Google login failed.');
             }
-        } catch (error) {
+        } catch {
             setMessage('An error occurred during Google login. Check server connection.');
         }
     };
@@ -75,7 +75,7 @@ const AuthPageContent = () => {
             } else {
                 setMessage(result.message || 'Invalid email or password.');
             }
-        } catch (error) {
+        } catch {
             setMessage('Login failed. Server is unreachable.');
         }
     };
@@ -95,7 +95,7 @@ const AuthPageContent = () => {
                 // Ensure to clear the message if the user created the account but the result is false
                 setMessage(result.message || 'Signup failed. Email may already be in use.');
             }
-        } catch (error) {
+        } catch {
             setMessage('Signup failed. Server is unreachable.');
         }
     };

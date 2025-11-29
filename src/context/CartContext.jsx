@@ -4,6 +4,7 @@ import React, { createContext, useContext, useState } from 'react';
 const CartContext = createContext();
 
 // 2. Create a custom hook to use the context easily
+// eslint-disable-next-line react-refresh/only-export-components
 export const useCart = () => {
     return useContext(CartContext);
 };
@@ -16,10 +17,10 @@ export const CartProvider = ({ children }) => {
         setItems(prevItems => {
             // Check if item already in cart
             const existingItem = prevItems.find(i => i.id === item.id);
-            
+
             if (existingItem) {
                 // If item exists, increase quantity
-                return prevItems.map(i => 
+                return prevItems.map(i =>
                     i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
                 );
             } else {
@@ -28,9 +29,6 @@ export const CartProvider = ({ children }) => {
                 return [...prevItems, { ...item, quantity: 1 }];
             }
         });
-
-        // In a real app, you would also call your Rust API here:
-        // api.postToCart(item.id, 1);
     };
 
     // 4. Add the removeFromCart function
@@ -41,12 +39,17 @@ export const CartProvider = ({ children }) => {
         });
     }
 
+    const clearCart = () => {
+        setItems([]);
+    };
+
     const value = {
         cartItems: items,
         // Calculate total number of items across all quantities
         itemCount: items.reduce((sum, item) => sum + item.quantity, 0),
         addToCart,
         removeFromCart,
+        clearCart,
     };
 
     return (

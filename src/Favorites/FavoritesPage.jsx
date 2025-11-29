@@ -1,5 +1,6 @@
 // src/Favorites/FavoritesPage.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { fetchFavorites as apiFetchFavorites, removeFavorite as apiRemoveFavorite } from '../services/api';
 import { useAuth } from '../Auth/AuthContext.jsx';
 import { useCart } from '../context/CartContext.jsx';
 import '../Home/App.css';
@@ -13,54 +14,31 @@ const FavoritesPage = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const fetchFavorites = useCallback(async () => {
+        const result = await apiFetchFavorites(token);
+        if (result.success) {
+            setFavorites(result.data);
+        } else {
+            setError(result.message);
+        }
+        setLoading(false);
+    }, [token]);
+
     useEffect(() => {
         if (isLoggedIn && token) {
             fetchFavorites();
         } else {
             setLoading(false);
         }
-    }, [isLoggedIn, token]);
-
-    const fetchFavorites = async () => {
-        try {
-            const response = await fetch('http://localhost:8080/api/favorites', {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                setFavorites(data);
-            } else {
-                setError('Failed to fetch favorites.');
-            }
-        } catch (err) {
-            console.error("Error fetching favorites:", err);
-            setError('An error occurred while loading favorites.');
-        } finally {
-            setLoading(false);
-        }
-    };
+    }, [isLoggedIn, token, fetchFavorites]);
 
     const removeFavorite = async (itemId) => {
-        try {
-            const response = await fetch(`http://localhost:8080/api/favorites/${itemId}`, {
-                method: 'DELETE',
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-
-            if (response.ok) {
-                // Remove from local state
-                setFavorites(prev => prev.filter(item => item.item_id !== itemId));
-            } else {
-                alert('Failed to remove favorite.');
-            }
-        } catch (err) {
-            console.error("Error removing favorite:", err);
-            alert('An error occurred.');
+        const result = await apiRemoveFavorite(token, itemId);
+        if (result.success) {
+            // Remove from local state
+            setFavorites(prev => prev.filter(item => item.item_id !== itemId));
+        } else {
+            alert(result.message);
         }
     };
 
