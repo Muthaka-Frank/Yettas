@@ -24,6 +24,7 @@ pub struct StkPushResponse {
 #[derive(Deserialize)]
 struct AccessTokenResponse {
     access_token: String,
+    #[serde(rename = "expires_in")]
     _expires_in: String,
 }
 

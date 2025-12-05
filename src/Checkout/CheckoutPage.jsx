@@ -13,6 +13,7 @@ const CheckoutPage = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState(null);
+    const [showPinPrompt, setShowPinPrompt] = useState(false);
 
     // Calculate total
     const total = cartItems.reduce((sum, item) => {
@@ -58,8 +59,13 @@ const CheckoutPage = () => {
             const result = await apiCheckout(token, checkoutData);
 
             if (result.success) {
-                setMessage({ type: 'success', text: `Order placed successfully! Status: ${result.status || 'Processing'}` });
-                clearCart();
+                if (paymentMethod === 'mpesa') {
+                    setShowPinPrompt(true);
+                    setMessage({ type: 'info', text: 'Please check your phone to complete the payment.' });
+                } else {
+                    setMessage({ type: 'success', text: `Order placed successfully! Status: ${result.status || 'Processing'}` });
+                    clearCart();
+                }
             } else {
                 setMessage({ type: 'error', text: result.message });
             }
@@ -71,11 +77,24 @@ const CheckoutPage = () => {
         }
     };
 
+    const handlePaymentConfirmation = () => {
+        setShowPinPrompt(false);
+        clearCart();
+        setMessage({ type: 'success', text: 'Payment confirmed! Your order has been placed successfully.' });
+    };
+
     return (
         <div className="checkout-container animated-element slide-in-up">
             <h1>Your Cart 🛒</h1>
             {cartItems.length === 0 ? (
-                <p>Your cart is empty.</p>
+                <div className="empty-cart-message">
+                    <p>Your cart is empty.</p>
+                    {message && message.type === 'success' && (
+                        <div className="success-message" style={{ marginTop: '20px', padding: '15px', backgroundColor: '#e8f5e9', color: '#2e7d32', borderRadius: '8px' }}>
+                            {message.text}
+                        </div>
+                    )}
+                </div>
             ) : (
                 <div className="cart-items-list">
                     {cartItems.map(item => (
@@ -104,7 +123,13 @@ const CheckoutPage = () => {
                     <h2>Checkout</h2>
 
                     {message && (
-                        <div className={`message ${message.type === 'error' ? 'error-message' : 'success-message'}`} style={{ padding: '10px', marginBottom: '15px', borderRadius: '5px', backgroundColor: message.type === 'error' ? '#ffebee' : '#e8f5e9', color: message.type === 'error' ? '#c62828' : '#2e7d32' }}>
+                        <div className={`message ${message.type === 'error' ? 'error-message' : (message.type === 'info' ? 'info-message' : 'success-message')}`} style={{
+                            padding: '10px',
+                            marginBottom: '15px',
+                            borderRadius: '5px',
+                            backgroundColor: message.type === 'error' ? '#ffebee' : (message.type === 'info' ? '#e3f2fd' : '#e8f5e9'),
+                            color: message.type === 'error' ? '#c62828' : (message.type === 'info' ? '#0d47a1' : '#2e7d32')
+                        }}>
                             {message.text}
                         </div>
                     )}
@@ -161,6 +186,60 @@ const CheckoutPage = () => {
                         {isLoading ? 'Processing...' : 'Pay Now'}
                     </button>
                 </form>
+            )}
+
+            {/* PIN Prompt Modal */}
+            {showPinPrompt && (
+                <div className="modal-overlay" style={{
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    zIndex: 1000
+                }}>
+                    <div className="modal-content" style={{
+                        backgroundColor: 'white',
+                        padding: '30px',
+                        borderRadius: '10px',
+                        textAlign: 'center',
+                        maxWidth: '400px',
+                        width: '90%'
+                    }}>
+                        <h2 style={{ color: '#333', marginBottom: '15px' }}>Confirm Payment</h2>
+                        <p style={{ marginBottom: '20px', fontSize: '16px', lineHeight: '1.5' }}>
+                            An M-Pesa payment request has been sent to <strong>{phoneNumber}</strong>.
+                            <br /><br />
+                            Please check your phone and enter your PIN to complete the transaction.
+                        </p>
+                        <div className="loader" style={{ margin: '20px auto', border: '4px solid #f3f3f3', borderTop: '4px solid #3498db', borderRadius: '50%', width: '30px', height: '30px', animation: 'spin 1s linear infinite' }}></div>
+                        <style>{`
+                            @keyframes spin {
+                                0% { transform: rotate(0deg); }
+                                100% { transform: rotate(360deg); }
+                            }
+                        `}</style>
+                        <button
+                            onClick={handlePaymentConfirmation}
+                            style={{
+                                backgroundColor: '#4CAF50',
+                                color: 'white',
+                                padding: '12px 24px',
+                                border: 'none',
+                                borderRadius: '5px',
+                                fontSize: '16px',
+                                cursor: 'pointer',
+                                marginTop: '10px'
+                            }}
+                        >
+                            I have entered my PIN
+                        </button>
+                    </div>
+                </div>
             )}
         </div>
     );
