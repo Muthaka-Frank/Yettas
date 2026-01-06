@@ -63,6 +63,7 @@ export const AuthProvider = ({ children }) => {
         user,
         token,
         isLoggedIn: !!user, // Simple check: user object exists
+        isAdmin: user?.role === 'admin', // Helper to check admin role
         login,
         logout,
         loading,

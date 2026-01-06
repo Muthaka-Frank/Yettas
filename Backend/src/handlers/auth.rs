@@ -81,6 +81,7 @@ pub async fn signup(client: web::Data<Client>, req: web::Json<SignupRequest>) ->
         google_id: None,
         reset_token: None,
         reset_token_expiry: None,
+        role: "user".to_string(),
     };
     
     // 4. Insert into database
@@ -92,7 +93,7 @@ pub async fn signup(client: web::Data<Client>, req: web::Json<SignupRequest>) ->
     }
     
     // 5. Create JWT using the new utility function
-    let token = match jwt::create_token(&new_user.email, &new_user.name) {
+    let token = match jwt::create_token(&new_user.email, &new_user.name, &new_user.role) {
         Ok(token) => token,
         Err(e) => {
             log::error!("JWT creation error: {}", e);
@@ -153,7 +154,7 @@ pub async fn login(client: web::Data<Client>, req: web::Json<LoginRequest>) -> i
         Ok(true) => {
             log::info!("Password verified for user: {}", req.email);
             // 4. Create JWT
-            let token = match jwt::create_token(&user.email, &user.name) {
+            let token = match jwt::create_token(&user.email, &user.name, &user.role) {
                 Ok(token) => token,
                 Err(e) => {
                     log::error!("JWT creation error: {}", e);
@@ -240,6 +241,7 @@ pub async fn verify_google_token(client: web::Data<Client>, req: web::Json<Googl
                     google_id: Some(google_info.sub),
                     reset_token: None,
                     reset_token_expiry: None,
+                    role: "user".to_string(),
                 };
                 
                 if let Err(e) = users_collection.insert_one(&new_user, None).await {
@@ -256,7 +258,7 @@ pub async fn verify_google_token(client: web::Data<Client>, req: web::Json<Googl
     };
     
     // 3. Create your app's JWT
-    let token = match jwt::create_token(&user.email, &user.name) {
+    let token = match jwt::create_token(&user.email, &user.name, &user.role) {
         Ok(token) => token,
         Err(e) => {
             log::error!("JWT creation error: {}", e);

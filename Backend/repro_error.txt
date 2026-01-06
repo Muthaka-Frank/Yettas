@@ -1,0 +1,8 @@
+Error: Error {
+    kind: ServerSelection {
+        message: "Server selection timeout: No available servers. Topology: { Type: Unknown, Servers: [ { Address: localhost:27017, Type: Unknown, Error: Kind: I/O error: No connection could be made because the target machine actively refused it. (os error 10061), labels: {} } ] }",
+    },
+    labels: {},
+    wire_version: None,
+    source: None,
+}

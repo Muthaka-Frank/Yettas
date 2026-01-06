@@ -9,6 +9,7 @@ pub struct Claims {
     pub sub: String, // Subject (user email)
     pub exp: i64,    // Expiration time
     pub name: String,
+    pub role: String,
 }
 
 // Get the JWT secret from .env
@@ -17,7 +18,7 @@ fn get_jwt_secret() -> String {
 }
 
 // Create a new JWT
-pub fn create_token(email: &str, name: &str) -> Result<String, jsonwebtoken::errors::Error> {
+pub fn create_token(email: &str, name: &str, role: &str) -> Result<String, jsonwebtoken::errors::Error> {
     let expiration = Utc::now()
         .checked_add_signed(Duration::days(7)) // Token is valid for 7 days
         .expect("Failed to create expiration")
@@ -27,6 +28,7 @@ pub fn create_token(email: &str, name: &str) -> Result<String, jsonwebtoken::err
         sub: email.to_owned(),
         exp: expiration,
         name: name.to_owned(),
+        role: role.to_owned(),
     };
 
     let header = Header::new(Algorithm::HS256);

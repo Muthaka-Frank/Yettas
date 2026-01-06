@@ -28,6 +28,8 @@ import FavoritesPage from '../Favorites/FavoritesPage.jsx';
 import SearchPage from '../components/SearchPage.jsx';
 import ForgotPasswordPage from '../Auth/ForgotPasswordPage.jsx';
 import ResetPasswordPage from '../Auth/ResetPasswordPage.jsx';
+import ProtectedRoute from '../components/ProtectedRoute.jsx';
+import AdminDashboard from '../Admin/AdminDashboard.jsx';
 
 const router = createBrowserRouter([
     {
@@ -49,6 +51,15 @@ const router = createBrowserRouter([
             { path: "search", element: <SearchPage /> }, // New Search Route
             { path: "forgot-password", element: <ForgotPasswordPage /> },
             { path: "reset-password", element: <ResetPasswordPage /> },
+            { path: "forgot-password", element: <ForgotPasswordPage /> },
+            { path: "reset-password", element: <ResetPasswordPage /> },
+            // Admin Routes
+            {
+                element: <ProtectedRoute requireAdmin={true} />,
+                children: [
+                    { path: "admin", element: <AdminDashboard /> },
+                ]
+            }
             // ...
         ],
     },

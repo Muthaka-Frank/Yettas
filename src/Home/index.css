@@ -103,9 +103,6 @@ header {
     transition: background-color var(--transition-speed);
 }
 
-.header-container {
-    /* Styles moved to App.css to avoid conflicts */
-}
 
 /* Utility Class for Layout */
 main,

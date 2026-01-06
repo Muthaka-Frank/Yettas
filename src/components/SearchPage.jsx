@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useCart } from '../context/CartContext.jsx';
-import { allMenuData } from '../data/allMenuData.js';
 import '../Home/App.css';
 import '../Home/index.css';
 
@@ -11,11 +10,45 @@ const SearchPage = () => {
     const { addToCart } = useCart();
     const [animatingItemId, setAnimatingItemId] = useState(null);
     const [filteredItems, setFilteredItems] = useState([]);
+    const [allMenuItems, setAllMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
 
+    // Fetch all menu items from backend
     useEffect(() => {
-        if (query) {
+        const fetchMenuItems = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/api/menu');
+                if (response.ok) {
+                    const data = await response.json();
+
+                    // Normalize backend data to match frontend expectations if necessary
+                    // Backend returns: { _id, title, description, price, image_src, category, ... }
+                    const formattedData = data.map(item => ({
+                        ...item,
+                        id: item._id?.$oid || item._id || item.id, // Handle potential objectId structures
+                        imageSrc: item.image_src || item.imageSrc, // Handle variable casing
+                        imageAlt: item.title
+                    }));
+
+                    setAllMenuItems(formattedData);
+                } else {
+                    console.error("Failed to fetch menu items for search");
+                }
+            } catch (error) {
+                console.error("Error fetching menu items:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchMenuItems();
+    }, []);
+
+    // Filter items when query or items change
+    useEffect(() => {
+        if (query && allMenuItems.length > 0) {
             const lowerQuery = query.toLowerCase();
-            const results = allMenuData.filter(item =>
+            const results = allMenuItems.filter(item =>
                 item.title.toLowerCase().includes(lowerQuery) ||
                 item.description.toLowerCase().includes(lowerQuery) ||
                 (item.category && item.category.toLowerCase().includes(lowerQuery))
@@ -24,7 +57,7 @@ const SearchPage = () => {
         } else {
             setFilteredItems([]);
         }
-    }, [query]);
+    }, [query, allMenuItems]);
 
     const handleAddToCart = (item) => {
         addToCart(item);
@@ -47,7 +80,11 @@ const SearchPage = () => {
             </section>
 
             <div className="content-container">
-                {filteredItems.length > 0 ? (
+                {loading ? (
+                    <div style={{ textAlign: 'center', padding: '40px' }}>
+                        <p>Searching menu...</p>
+                    </div>
+                ) : filteredItems.length > 0 ? (
                     <section className="menu-grid" style={{ display: 'flex', flexWrap: 'wrap', gap: '30px', marginTop: '20px', justifyContent: 'center' }}>
                         {filteredItems.map((item, index) => (
                             <div

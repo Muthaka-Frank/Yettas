@@ -106,13 +106,26 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 1300px;
-    /* Match main content max-width */
+    width: 100%;
+    /* Full width for flexibility */
     margin: 0 auto;
     gap: 20px;
     flex-wrap: wrap;
     /* Allow wrapping on smaller screens */
-    padding: 10px 20px;
+    padding: 10px 30px;
+    /* Increased side padding */
+}
+
+/* On Desktop, center the middle group (Menu, Search, Cart) */
+@media (min-width: 901px) {
+    .dropdown {
+        margin-left: auto;
+    }
+
+    .cart-button-container {
+        margin-right: auto;
+        /* margin-right on the item BEFORE the last item (login) pushes the last item to the edge */
+    }
 }
 
 

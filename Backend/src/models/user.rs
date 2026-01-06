@@ -18,6 +18,13 @@ pub struct User {
     pub reset_token: Option<String>, // For password reset
     #[serde(skip_serializing_if = "Option::is_none")]
     pub reset_token_expiry: Option<i64>, // Timestamp for token expiry
+    
+    #[serde(default = "default_role")]
+    pub role: String, // "user" or "admin"
+}
+
+fn default_role() -> String {
+    "user".to_string()
 }
 
 // Model for sending user data back to the client (without sensitive info)
@@ -26,6 +33,7 @@ pub struct PublicUser {
     pub id: String, // CRITICAL FIX: The client needs the string ID
     pub name: String,
     pub email: String,
+    pub role: String,
 }
 
 // Conversion trait to hide sensitive fields and convert ObjectId to String
@@ -36,6 +44,7 @@ impl From<User> for PublicUser {
             id: user.id.map(|id| id.to_hex()).unwrap_or_default(), 
             name: user.name,
             email: user.email,
+            role: user.role,
         }
     }
 }
